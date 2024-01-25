@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {string} ransomNote
+         * @param {string} magazine
+         * @return {boolean}
+         */
+        var canConstruct = function (ransomNote, magazine) {
+            // 若赎金信长度大于杂志则返回false
+            if (ransomNote.length > magazine.length) return false
+            const map = new Map()
+            // 遍历magzine,将字符和字符个数存入map
+            for (const item of magazine) {
+                map.set(item, (map.get(item) || 0) + 1)
+            }
+            // 遍历ransomNote,查找字符
+            for (const item of ransomNote) {
+                // 若找到,则对字符个数减一
+                if (map.has(item)) {
+                    const val = map.get(item)
+                    // 当字符个数小于等于0,则返回false
+                    if (val <= 0) return false
+                    map.set(item, val - 1)
+                }
+                else return false
+            }
+            return true
+        };
+        canConstruct('hhh', 'ywhsljhhi')
+    </script>
+</body>
+
+</html>

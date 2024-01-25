@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for singly-linked list.
+         * function ListNode(val) {
+         *     this.val = val;
+         *     this.next = null;
+         * }
+         */
+
+        /**
+         * @param {ListNode} head
+         * @return {ListNode}
+         */
+        var detectCycle = function (head) {
+            let fast = head, slow = head
+            // 判断是否有环
+            while (fast) {
+                if (fast.next === null) return null
+                // 慢指针走一步,快指针走两步
+                fast = fast.next.next
+                slow = slow.next
+                // 若有环则慢指针必将追上快指针
+                if (fast === slow) {
+                    let index = head
+                    let meet = slow
+                    while (index !== meet) {
+                        index = index.next
+                        meet = meet.next
+                    }
+                    return meet
+                }
+            }
+            // 空链表直接返回null
+            return null
+        };
+    </script>
+</body>
+
+</html>

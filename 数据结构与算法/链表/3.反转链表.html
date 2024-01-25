@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for singly-linked list.
+         * function ListNode(val, next) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.next = (next===undefined ? null : next)
+         * }
+         */
+        /**
+         * @param {ListNode} head
+         * @return {ListNode}
+         */
+        class ListNode {
+            constructor(val, next) {
+                this.val = val
+                this.next = next
+            }
+        }
+        var reverseList = function (head) {
+            if (!head || !head.next) return head
+            let prev = null
+            let cur = head
+            while (cur) {
+                // 定义一个中间变量保存当前指针
+                let temp = cur.next
+                cur.next = prev
+                prev = cur
+                cur = temp
+            }
+            return prev
+        };
+    </script>
+</body>
+
+</html>

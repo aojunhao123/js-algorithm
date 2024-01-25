@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for singly-linked list.
+         * function ListNode(val, next) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.next = (next===undefined ? null : next)
+         * }
+         */
+        /**
+         * @param {ListNode} head
+         * @param {number} n
+         * @return {ListNode}
+         */
+        class ListNode {
+            constructor(val, next) {
+                this.val = val
+                this.next = next
+            }
+        }
+
+        /* 暴力解 */
+        /*   var removeNthFromEnd = function (head, n) {
+              // 特殊情况1：若链表只有一个节点
+              if (!head.next && n === 1) {
+                  return null
+              }
+              let dummy = new ListNode(0, head)
+              let cur = dummy
+              // 链表长度
+              let length = 0
+              // 第二次循环链表节点下标
+              let count = 0
+              // 第一次循环计算链表长度
+              while (cur.next) {
+                  length++
+                  cur = cur.next
+              }
+              // 特殊情况2：删除的是链表头节点
+              if (length === n) {
+                  return head.next
+              }
+              const res = length - n
+              cur = dummy
+              while (cur.next) {
+                  count++
+                  cur = cur.next
+                  if (res === count) {
+                      cur.next = cur.next.next
+                      break
+                  }
+              }
+              return dummy.next
+          }; */
+
+        /* 双指针 */
+        var removeNthFromEnd = function (head, n) {
+            // 虚拟头结点
+            let dummy = new ListNode(0, head)
+            // 快慢指针
+            let fast = dummy, slow = dummy
+            while (n--) {
+                fast = fast.next
+            }
+            while (fast.next) {
+                fast = fast.next
+                slow = slow.next
+            }
+            slow.next = slow.next.next
+            return dummy.next
+        }
+    </script>
+</body>
+
+</html>

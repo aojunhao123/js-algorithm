@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二分查找</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number}
+     */
+    var search = function (nums, target) {
+        // 左指针
+        let left = 0
+        // 右指针
+        let right = nums.length - 1
+        while (left <= right) {
+            // 中间指针
+            const mid = Math.floor((left + right) / 2)
+            if (target === nums[mid]) {
+                return mid
+            }
+            else if (target > nums[mid]) {
+                left = mid + 1
+            }
+            else {
+                right = mid - 1
+            }
+        }
+        return -1
+    };
+    </script>
+</body>
+
+</html>

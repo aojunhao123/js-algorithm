@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {ListNode} head
+         * @param {number} val
+         * @return {ListNode}
+         */
+        // 定义链表节点
+        class ListNode {
+            constructor(val) {
+                this.val = val
+                this.next = null
+            }
+        }
+        // var removeElements = function (head, val) {
+        //     // 设置虚拟头节点
+        //     const virtualHead = new ListNode(0)
+        //     virtualHead.next = head
+        //     let current = virtualHead
+        //     // 遍历链表
+        //     while (current.next !== null) {
+        //         // 若下一个节点的值等于目标值，则执行删除操作
+        //         if (current.next.val === val) {
+        //             current.next = current.next.next
+        //         }
+        //         else {
+        //             // 否则继续向后遍历
+        //             current = current.next
+        //         }
+        //     }
+        //     return virtualHead.next
+        // };
+
+        const removeElements = function (head, val) {
+            // 判断头节点是否需要删除
+            if (head !== null && head.val === val) {
+                head = head.next
+            }
+            let current = head
+            // 遍历链表
+            while (current.next !== null) {
+                if (current.next.val === val) {
+                    current.next = current.next.next
+                }
+                else current = current.next
+            }
+            return head
+        }
+        
+
+    </script>
+</body>
+
+</html>

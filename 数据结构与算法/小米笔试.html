@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // 给定长度为n的数组nums，以及整数k
+
+            
+            class Solution {
+
+                /* 到达终点的最大步数 */
+                maximumSteps(nums, k) {
+                    let max = 0;
+                    let sum = 0;
+                    let i = 0;
+                    let j = 0;
+                    while (j < nums.length) {
+                        sum += nums[j];
+                        while (sum > k) {
+                            sum -= nums[i];
+                            i++;
+                        }
+                        max = Math.max(max, j - i + 1);
+                        j++;
+                    }
+                    return max;
+                }
+            }
+            let res;
+
+            let nums_size = readInt();
+
+            let nums = new Array();
+            let nums_item;
+            for (let nums_i = 0; nums_i < nums_size; nums_i++) {
+                nums.push(readInt());
+            }
+            let k = readInt();
+            let acmSolution = new Solution();
+            res = acmSolution.maximumSteps(nums, k);
+            print(res);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @param {number} k
+         * @return {string}
+         */
+        var reverseStr = function (s, k) {
+            // 转换成数组后进行操作
+            const strArr = [...s]
+            const length = strArr.length
+            // 遍历字符串
+            for (let i = 0; i < length; i += 2 * k) {
+                // 左边界
+                let left = i
+                // 右边界(i+k>length说明字符串剩余区间不足k,全部反转;反之直接反转k个)
+                let right = length > i + k ? i + k - 1 : length - 1
+                while (left < right) {
+                    [strArr[left], strArr[right]] = [strArr[right], strArr[left]]
+                    left++
+                    right--
+                }
+            }
+            // 返回字符串
+            return strArr.join("")
+        };
+        console.log(reverseStr('hello', 2));
+    </script>
+</body>
+
+</html>

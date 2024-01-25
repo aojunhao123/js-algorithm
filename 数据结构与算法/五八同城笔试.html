@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+         *
+         * 返回给定字符串中出现频率最高的字符
+         * @param str string字符串 给定的字符串
+         * @return string字符串一维数组
+         */
+        function findChar(str) {
+            // 返回出现频率最高的字符
+            let map = new Map();
+            // 遍历字符串
+            for (let i = 0; i < str.length; i++) {
+                // 如果map中没有这个字符，就把这个字符放进去，value为1
+                if (!map.has(str[i])) {
+                    map.set(str[i], 1);
+                } else {
+                    // 如果map中有这个字符，就把这个字符的value+1
+                    map.set(str[i], map.get(str[i]) + 1);
+                }
+            }
+            // 遍历map
+            let max = 0;
+            let res = [];
+            for (let [key, value] of map) {
+                // 如果value大于max，就把max更新为value
+                if (value > max) {
+                    max = value;
+                    // 把res清空，把key放进去
+                    res = [];
+                    res.push(key);
+                } else if (value === max) {
+                    // 如果value等于max，就把key放进去
+                    res.push(key);
+                }
+            }
+            return res;
+        }
+        module.exports = {
+            findChar: findChar
+        };
+    </script>
+</body>
+
+</html>

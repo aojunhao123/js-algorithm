@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @return {number[]}
+         */
+
+        // 暴力解法
+        /* var sortedSquares = function (nums) {
+            const newArr = nums.map(item => {
+                return item * item
+            })
+            newArr.sort((a, b) => {
+                // 若 a < b ，则 a - b < 0 ，即 a 排在 b 前面
+                if (a < b) return -1
+                // 若 a > b ，则 a - b > 0 ，即 a 排在 b 后面
+                if (a > b) return 1
+                // 若 a = b ，则 a - b = 0 ，即 a 和 b 的相对位置不变
+                return 0
+            })
+            return newArr
+        }; */
+
+        // 双指针解法
+        // 由于数组是递增的,因此最大的数一定在数组两端
+        var sortedSquares = function (nums) {
+            let i = 0 // 左指针 
+            let j = nums.length - 1 // 右指针
+            const newArr = []
+            // 
+            while (i <= j) {
+                if (nums[i] * nums[i] > nums[j] * nums[j]) {
+                    newArr.unshift(nums[i] * nums[i])
+                    i++
+                }
+                else {
+                    newArr.unshift(nums[j] * nums[j])
+                    j--
+                }
+            }
+            return newArr
+        }
+        sortedSquares([-4, -1, 0, 3, 10])
+    </script>
+</body>
+
+</html>

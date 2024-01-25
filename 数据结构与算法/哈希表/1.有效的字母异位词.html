@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @param {string} t
+         * @return {boolean}
+         */
+        var isAnagram = function (s, t) {
+            if (s.length !== t.length) return false
+            const map = new Map();
+            const str = 'hello'
+            for (const item of s) {
+                // 统计字符串s中出现的字符次数
+                map.set(item, (map.get(item) || 0) + 1)
+            }
+            for (const item of t) {
+                // 若存在不同字符则返回false
+                if (!map.get(item)) return false
+                map.set(item, (map.get(item) || 0) - 1)
+            }
+            // 遍历map中的值，若均为0则证明为异位词
+            for (const item of map.values()) {
+                if (item !== 0) return false
+            }
+            return true
+        };
+        isAnagram('abba', 'aabb')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @param {number} val
+         * @return {number}
+         */
+        
+        // 暴力解法
+        /* var removeElement = function (nums, val) {
+            for (let i = 0; i < nums.length; i++) {
+                if (nums[i] === val) {
+                    nums.splice(i, 1)
+                    i--
+                }
+            }
+            return nums
+        }; */
+
+        // 双指针解法
+        var removeElement = function (nums, val) {
+            let i = 0; // 指向当前遍历的位置(快指针)
+            let j = 0; // 指向下一个要覆盖的位置(慢指针)
+
+            while (i < nums.length) {
+                if (nums[i] !== val) {
+                    nums[j] = nums[i]; // 覆盖元素
+                    j++;
+                }
+                i++;
+            }
+
+            return j; // 返回新长度
+        };
+
+        console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2))
+    </script>
+</body>
+
+</html>

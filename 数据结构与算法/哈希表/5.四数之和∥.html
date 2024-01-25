@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number[]} nums1
+         * @param {number[]} nums2
+         * @param {number[]} nums3
+         * @param {number[]} nums4
+         * @return {number}
+         */
+        var fourSumCount = function (nums1, nums2, nums3, nums4) {
+            const map = new Map()
+            // 遍历nums1、nums2
+            for (let i = 0; i < nums1.length; i++) {
+                for (let j = 0; j < nums2.length; j++) {
+                    // 将nums1、nums2的和以及出现次数存入map
+                    map.set(nums1[i] + nums2[j], (map.get(nums1[i] + nums2[j]) || 0) + 1)
+                }
+            }
+            // 统计元组个数
+            let sum = 0
+            for (let i = 0; i < nums3.length; i++) {
+                for (let j = 0; j < nums4.length; j++) {
+                    // 查找，若找到则累加
+                    if (map.has(0 - (nums3[i] + nums4[j]))) sum += map.get(0 - (nums3[i] + nums4[j]))
+                }
+            }
+            return sum
+        };
+
+        fourSumCount([1, 2], [-2, -1], [-1, 2], [0, 2])
+    </script>
+</body>
+
+</html>

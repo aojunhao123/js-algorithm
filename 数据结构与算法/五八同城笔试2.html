@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+         *
+         * 返回斐波那契数列第n项的数字
+         * @param n long长整型 数列中的第n项
+         * @return long长整型
+         */
+        function fib(n) {
+            // 动态规划
+            let dp = new Array(n + 1);
+            dp[0] = 0
+            dp[1] = 1
+            for (let i = 2; i <= n; i++) {
+                dp[i] = dp[i - 1] + dp[i - 2]
+            }
+            return dp[n]
+        }
+    </script>
+</body>
+
+</html>

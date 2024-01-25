@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+         *
+         * 请实现一个将中文数字转换为阿拉伯数字的方法
+         * @param chineseNumber string字符串 中文数字字符串
+         * @return int整型
+         */
+        function chineseToNumber(chineseNumber) {
+            // write code here
+
+            // 1.把中文数字转换为阿拉伯数字
+            let map = new Map();
+            map.set('零', 0);
+            map.set('一', 1);
+            map.set('二', 2);
+            map.set('三', 3);
+            map.set('四', 4);
+            map.set('五', 5)
+            map.set('六', 6)
+            map.set('七', 7)
+            map.set('八', 8)
+            map.set('九', 9)
+            map.set('十', 10)
+            map.set('百', 100)
+            map.set('千', 1000)
+            map.set('万', 10000)
+            map.set('亿', 100000000)
+            let res = 0;
+            let temp = 0;
+            for (let i = 0; i < chineseNumber.length; i++) {
+                if (map.get(chineseNumber[i]) >= 10) {
+                    res += temp * map.get(chineseNumber[i]);
+                    temp = 0;
+                } else {
+                    temp = map.get(chineseNumber[i]);
+                }
+            }
+            res += temp;
+            return res;
+        }
+    </script>
+</body>
+
+</html>

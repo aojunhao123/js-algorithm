@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+        * 红灯3秒亮一次，黄灯2秒亮一次，绿灯1秒亮一次；如何让三个灯不断交替重复亮灯？(Promise实现)
+        */
+        function red() {
+            console.log('red');
+        }
+        function green() {
+            console.log('green');
+        }
+        function yellow() {
+            console.log('yellow');
+        }
+
+        /**
+         * 控制红黄绿灯的亮起
+        */
+        function changeLight(cb, timer) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    cb()
+                    resolve()
+                }, timer)
+            })
+        }
+
+        function trafficLight() {
+            changeLight(red, 3000)
+                .then(() => {
+                    return changeLight(yellow, 2000)
+                })
+                .then(() => {
+                    return changeLight(green, 1000)
+                })
+                .then(() => {
+                    trafficLight()
+                })
+        }
+
+        trafficLight()
+
+    </script>
+</body>
+
+</html>

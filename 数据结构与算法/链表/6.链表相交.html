@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for singly-linked list.
+         * function ListNode(val) {
+         *     this.val = val;
+         *     this.next = null;
+         * }
+         */
+
+        /**
+         * @param {ListNode} headA
+         * @param {ListNode} headB
+         * @return {ListNode}
+         */
+
+        // 暴力解
+        /* var getIntersectionNode = function (headA, headB) {
+            let curA = headA
+            while (curA) {
+                // 遍历前重置curB(确保链表b每次都从头节点开始遍历)
+                let curB = headB
+                while (curB) {
+                    if (curA === curB) {
+                        return curA
+                    }
+                    curB = curB.next
+                }
+                curA = curA.next
+            }
+            return null
+        }; */
+
+        // 双指针
+        var getIntersectionNode = function (headA, headB) {
+            let curA = headA
+            let curB = headB
+            while (curA !== curB) {
+                curA = curA ? curA.next : headB
+                curB = curB ? curB.next : headA
+            }
+        }
+    </script>
+</body>
+
+</html>

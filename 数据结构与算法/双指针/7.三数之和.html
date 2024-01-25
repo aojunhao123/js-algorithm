@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @return {number[][]}
+         */
+        var threeSum = function (nums) {
+            // 对数组进行升序排列
+            nums.sort((a, b) => a - b)
+            console.log(nums);
+            const res = []
+            // 若数组排序后第一个元素大于0，则直接返回空数组
+            if (nums[0] > 0) return res
+            // 遍历数组
+            for (let i = 0; i < nums.length; i++) {
+                // 去重1
+                if (nums[i] === nums[i - 1]) continue
+                // 双指针
+                let left = i + 1, right = nums.length - 1
+                while (left < right) {
+                    // 三数之和
+                    let threeSum = nums[i] + nums[left] + nums[right]
+                    // 大于0则移动右指针
+                    if (threeSum > 0) {
+                        right--
+                    }
+                    // 小于0则移动左指针
+                    else if (threeSum < 0) {
+                        left++
+                    }
+                    else {
+                        res.push([nums[i], nums[left], nums[right]])
+                        // 去重2
+                        while (left < right && nums[left] === nums[left + 1]) left++
+                        while (left < right && nums[right] === nums[right - 1]) right--
+                        left++
+                        right--
+                    }
+
+                }
+            }
+            return res
+        };
+        console.log(threeSum([-1, 1, -1, 0]));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for singly-linked list.
+         * function ListNode(val, next) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.next = (next===undefined ? null : next)
+         * }
+         */
+        /**
+         * @param {ListNode} head
+         * @return {ListNode}
+         */
+
+        // 不能操作原节点内部值
+
+        class ListNode {
+            constructor(val, next) {
+                this.val = val
+                this.next = next
+            }
+        }
+
+        var swapPairs = function (head) {
+            // 设置虚拟头结点
+            let virtualHead = new ListNode(0, head)
+            let temp = head
+            let cur = virtualHead
+            // 遍历链表(若接下来两个节点都不为空说明翻转未结束)
+            while (temp && temp.next) {
+                cur.next = temp.next
+                // 交换前保存节点
+                let temp1 = temp.next.next
+                temp.next.next = temp
+                temp.next = temp1
+                // 交换完毕,更新指针
+                cur = temp
+                temp = cur.next
+            }
+            return virtualHead.next
+        }
+    </script>
+</body>
+
+</html>
