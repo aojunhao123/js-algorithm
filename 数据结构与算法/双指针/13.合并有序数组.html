@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number[]} nums1
+         * @param {number} m
+         * @param {number[]} nums2
+         * @param {number} n
+         * @return {void} Do not return anything, modify nums1 in-place instead.
+         */
+        // 思路：对nums1和nums2中的元素进行对比(双指针)
+        var merge = function (nums1, m, nums2, n) {
+            // 定义两个指针分别指向nums1和nums2的最后一个成员
+            let i = m - 1
+            let j = n - 1
+            // 指向nums1数组的末尾
+            let k = m + n - 1
+            // 循环终止条件：两个指针都遍历完当前数组
+            while (i >= 0 && j >= 0) {
+                if (nums1[i] >= nums2[j]) {
+                    nums1[k--] = nums1[i--]
+                }
+                else {
+                    nums1[k--] = nums2[j--]
+                }
+            }
+            // 特殊情况：nums1遍历完有效部分，nums2继续填入nums1的空缺中
+            while (j >= 0) {
+                nums1[k--] = nums2[j--]
+            }
+        };
+        merge([2, 5, 6, 0, 0, 0], 3, [1, 2, 3], 3)
+    </script>
+</body>
+
+</html>
