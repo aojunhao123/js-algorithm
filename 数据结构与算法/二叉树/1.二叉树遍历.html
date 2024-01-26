@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // 二叉树根节点
+        const root = {
+            val: "A",
+            left: {
+                val: "B",
+                left: {
+                    val: "D",
+                },
+                right: {
+                    val: "E"
+                },
+            },
+            right: {
+                val: "C",
+                right: {
+                    val: "F"
+                },
+            },
+        }
+
+        // 前序遍历(入参为树的节点)
+        function preOrder(root) {
+            // 节点为空则返回
+            while (!root) {
+                return
+            }
+            console.log(root.val);
+            // 先遍历左节点再遍历右节点
+            preOrder(root.left)
+            preOrder(root.right)
+        }
+
+        // 中序遍历
+        function inOrder(root) {
+            while (!root) {
+                return
+            }
+            inOrder(root.left)
+            console.log(root.val);
+            inOrder(root.right)
+        }
+
+        // 后序遍历
+        function postOrder(root) {
+            while (!root) {
+                return
+            }
+            postOrder(root.left)
+            postOrder(root.right)
+            console.log(root.val);
+        }
+
+        // preOrder(root) // A B D E C F
+        // inOrder(root)
+        postOrder(root)
+    </script>
+</body>
+
+</html>

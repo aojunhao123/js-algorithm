@@ -14,20 +14,22 @@
          * @param {number} target
          * @return {number[]}
          */
-        var twoSum = function (nums, target) {
+        function twoSum(nums, target) {
             const map = new Map()
-            // 不要使用foreach,无法终止循环!!!
             for (let i = 0; i < nums.length; i++) {
-                if (!map.has(target - nums[i])) {
-                    map.set(nums[i], i)
+                const curNums = nums[i] //当前元素
+                const targetNums = target - curNums //目标元素
+                // 判断map中是否有符合的值(一定要先判断，再set！！！)
+                if (map.has(targetNums)) {
+                    // 找到则返回包含下标数组
+                    return [map.get(targetNums), i]
                 }
+                // 存储当前值
                 else {
-                    return [map.get(target - nums[i]), i]
+                    map.set(curNums, i)
                 }
             }
-            return []
-        };
-        twoSum([2, 7, 11, 15], 9)
+        }
     </script>
 </body>
 
