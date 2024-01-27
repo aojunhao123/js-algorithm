@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @return {boolean}
+         */
+        var validPalindrome = function (s) {
+            let l = 0, r = s.length - 1
+            while (l < r) {
+                // 相等，指针移动继续判断
+                if (s[l] === s[r]) {
+                    l++
+                    r--
+                }
+                // 先别判死刑，看删除之后是否回文
+                if (s[l] !== s[r]) {
+                    return isPali(s, l, r - 1) || isPali(s, l + 1, r)
+                }
+            }
+            // 默认返回值
+            return true
+        };
+
+        // 验证是否为回文串
+        function isPali(s, l, r) {
+            while (l < r) {
+                if (s[l++] !== s[r--]) return false
+            }
+            return true
+        }
+    </script>
+</body>
+
+</html>
