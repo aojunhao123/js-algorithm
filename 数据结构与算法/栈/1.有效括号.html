@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @return {boolean}
+         */
+        var isValid = function (s) {
+            // 配对的括号
+            const leftToRightMap = {
+                "(": ")",
+                "[": "]",
+                "{": "}"
+            }
+            const len = s.length
+            // 创建一个栈用于匹配
+            const stack = []
+            for (let i = 0; i < len; i++) {
+                // 当前遍历数组元素
+                const cur = s[i]
+                // 若遍历到左括号则将与其配对的右括号入栈
+                if (cur === "(" || cur === "[" || cur === "{") {
+                    stack.push(leftToRightMap[cur])
+                }
+                else {
+                    // 若当前元素与栈顶元素不同则返回false
+                    if (cur !== stack.pop()) {
+                        return false
+                    }
+                }
+            }
+            // 遍历结束后若栈内还有未匹配上的元素则返回false
+            if (stack.length) return false
+            return true
+        };
+    </script>
+</body>
+
+</html>
