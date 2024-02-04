@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        class Subject {
+            // 初始化观察者列表
+            constructor() {
+                this.observerList = []
+            }
+            // 添加观察者
+            addObserver(observer) {
+                this.observerList.push(observer)
+            }
+            // 删除观察者
+            removeObserver(observer) {
+                this.observerList = this.observerList.filter(observerItem => observerItem !== observer)
+            }
+            // 通知观察者
+            notify() {
+                // 通知每一个观察者并执行他们相应的回调
+                this.observerList.forEach(observer => observer.update())
+            }
+        }
+        class Observer {
+            constructor(name) {
+                this.name = name
+            }
+            // 在接收到通知后执行相应的业务逻辑
+            update() {
+                console.log(this.name + '：好嘟，我知道了~');
+            }
+        }
+
+        const obj1 = new Observer('观察者1')
+        const obj2 = new Observer('观察者2')
+        const subject = new Subject()
+        subject.addObserver(obj1)
+        subject.addObserver(obj2)
+        subject.notify()
+        subject.removeObserver(obj2)
+        subject.notify()
+    </script>
+</body>
+
+</html>

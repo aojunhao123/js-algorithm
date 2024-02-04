@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // 事件中心
+        class PubSub {
+            constructor() {
+                // 用于存储发布的事件
+                // 存储格式：eventName：EventCallback[]
+                // 事件中存放着订阅者的回调函数
+                this.events = {}
+            }
+            // 订阅方法
+            subscribe(name, cb) {
+                if (!this.events[name]) {
+                    this.events[name] = []
+                }
+                // 将订阅者的回调函数放入数组
+                this.events[name].push(cb)
+            }
+            // 发布方法
+            publish(name, ...args) {
+                if (this.events[name]) {
+                    // 通知所有订阅者并执行订阅者的相应回调
+                    this.events[name].forEach(cb => cb(...args));
+                }
+            }
+            // 取消订阅
+            unSubscribe(name, cb) {
+                if (this.events[name]) {
+                    this.events[name] = this.events[name].filter(item => item !== cb)
+                }
+                if (this.events[name].length === 0) {
+                    delete this.events[name]
+                }
+            }
+            // 取消全部订阅
+            unSubscribeAll(name) {
+                // 删除该事件对应的回调数组
+                delete this.events[name]
+            }
+        }
+
+        // 创建事件中心
+        const pubsub = new PubSub()
+
+        // 订阅
+        pubsub.subscribe('hunting', (info) => {
+            console.log(`我的任务是：${info}`);
+        })
+        pubsub.subscribe('dancing', (info) => {
+            console.log(`我想跳舞：${info}`);
+        })
+
+        // 发布
+        pubsub.publish('hunting', '抓一只练习时长两年半的小黑子~')
+        pubsub.publish('hunting', '抓一只蔡徐鲲~')
+        pubsub.publish('dancing', '🐔泥太煤~')
+    </script>
+</body>
+
+</html>
