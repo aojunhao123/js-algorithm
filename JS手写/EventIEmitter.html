@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        class EventEmitter {
+            constructor() {
+                this.events = {}
+            }
+            // 订阅
+            on(name, cb) {
+                if (!this.events[name]) {
+                    this.events[name] = []
+                }
+                this.events[name].push(cb)
+            }
+            // 发布
+            emit(name, data) {
+                this.events[name].forEach(cb => cb(data))
+            }
+            // 取消订阅
+            off(name, cb) {
+                this.events[name] = this.events[name].filter(item => item !== cb)
+            }
+            // 一次性事件监听(订阅成功后就销毁)
+            once(name, cb) {
+                const onceCallback = data => {
+                    cb(data)
+                    // 执行完回调后清除
+                    this.off(name, onceCallback)
+                }
+                this.on(name, onceCallback)
+            }
+        }
+
+        const emitter = new EventEmitter()
+        // 监听
+        emitter.on('event1', (data) => {
+            console.log('callback1', data);
+        })
+        emitter.on('event1', (data) => {
+            console.log('callback2', data);
+        })
+        emitter.once('event1', (data) => {
+            console.log('callback1', data);
+        })
+
+        // 触发
+        emitter.emit('event1', "Hello,World!")
+        emitter.emit('event1', "Hello,World!")
+    </script>
+</body>
+
+</html>
