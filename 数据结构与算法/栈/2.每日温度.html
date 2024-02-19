@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number[]} temperatures
+         * @return {number[]}
+         */
+        // 单调栈使用场景：
+        // 通常是一维数组，要寻找任一个元素的右边或者左边第一个比自己大或者小的元素的位置，此时我们就要想到可以用单调栈了。
+        var dailyTemperatures = function (temperatures) {
+            const len = temperatures.length
+            // 单调栈
+            const stack = []
+            // 返回结果
+            const result = new Array(len).fill(0)
+            for (let i = 0; i < len; i++) {
+                // 若当前遍历的元素大于栈顶元素则弹出
+                while (stack.length && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+                    const top = stack.pop()
+                    result[top] = i - top
+                }
+                stack.push(i)
+            }
+            return result
+        };
+    </script>
+</body>
+
+</html>
