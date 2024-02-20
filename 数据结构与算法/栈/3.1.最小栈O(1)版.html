@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        class MinStack {
+            constructor() {
+                this.stack1 = []
+                // 维护一个单调递减栈
+                this.stack2 = []
+            }
+            push(val) {
+                const len = this.stack2.length
+                const top = this.stack2[len - 1]
+                this.stack1.push(val)
+                // 当push的值小于等于单调栈栈顶值时，则将该值放入单调栈
+                if (!len || val <= top) {
+                    this.stack2.push(val)
+                }
+            }
+            pop() {
+                const len = this.stack2.length
+                const top = this.stack2[len - 1]
+                // 若要出栈的元素与单调栈栈顶元素相等，则单调栈也得执行出栈操作
+                const popVal = this.stack1.pop()
+                if (popVal === top) {
+                    this.stack2.pop()
+                }
+            }
+            top() {
+                const len = this.stack1.length
+                return this.stack1[len - 1]
+            }
+            // 直接获取单调栈栈顶元素，时间复杂度为O(1)
+            getMin() {
+                const len = this.stack2.length
+                const top = this.stack2[len - 1]
+                return top
+            }
+        }
+        const minStack = new MinStack()
+        minStack.push(3)
+        minStack.push(0)
+        minStack.push(7)
+        minStack.push(1)
+        minStack.push(9)
+        console.log(minStack);
+        console.log(minStack.getMin());
+
+    </script>
+</body>
+
+</html>

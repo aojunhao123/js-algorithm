@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        class MinStack {
+            constructor() {
+                this.stack = []
+            }
+            push(item) {
+                this.stack.push(item)
+            }
+            pop() {
+                this.stack.pop()
+            }
+            top() {
+                const len = this.stack.length
+                return this.stack[len - 1]
+            }
+            // 创建一个初始值极大的变量表示最小值
+            // 遍历栈，当遍历元素小于该变量时则进行更新
+            // ❗️❗️❗️ 时间复杂度还可以再次优化！！！
+            getMin() {
+                const len = this.stack.length
+                let min = Infinity
+                for (let i = 0; i < len; i++) {
+                    if (this.stack[i] < min) {
+                        min = this.stack[i]
+                    }
+                }
+                return min
+            }
+        }
+        const minStack = new MinStack()
+        minStack.push(1)
+        minStack.push(5)
+        minStack.pop()
+        console.log(minStack.getMin());
+        console.log(minStack.top());
+        console.log(minStack);
+    </script>
+</body>
+
+</html>
