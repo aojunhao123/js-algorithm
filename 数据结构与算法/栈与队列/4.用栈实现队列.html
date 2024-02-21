@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        class MyQueue {
+            constructor() {
+                this.stack1 = []
+                this.stack2 = []
+            }
+            push(val) {
+                this.stack1.push(val)
+            }
+            pop() {
+                // 将stack1中的元素出栈并放入stack2
+                // 以此达到逆序的目的
+                if (!this.stack2.length) {
+                    while (this.stack1.length !== 0) {
+                        this.stack2.push(this.stack1.pop())
+                    }
+                }
+                return this.stack2.pop()
+            }
+            peek() {
+                if (!this.stack2.length) {
+                    while (this.stack1.length !== 0) {
+                        this.stack2.push(this.stack1.pop())
+                    }
+                }
+                const len = this.stack2.length
+                return this.stack2[len - 1]
+            }
+            empty() {
+                const len1 = this.stack1.length
+                const len2 = this.stack2.length
+                return len1 || len2 ? false : true
+            }
+        }
+        const myQueue = new MyQueue()
+        myQueue.push(1)
+        myQueue.push(2)
+        myQueue.push(3)
+        console.log(myQueue.pop());
+        myQueue.push(999)
+        console.log(myQueue.pop());
+        console.log(myQueue.empty());
+        console.log(myQueue.peek());
+    </script>
+</body>
+
+</html>
