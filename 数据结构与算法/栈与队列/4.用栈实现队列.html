@@ -9,6 +9,9 @@
 
 <body>
     <script>
+        // 队列：先进先出
+        // 即保证最先入栈的元素能够最先出栈即可
+        // 即让整个栈逆序，使得栈底元素能够出现在栈顶，然后进行出栈操作
         class MyQueue {
             constructor() {
                 this.stack1 = []
@@ -21,6 +24,7 @@
                 // 将stack1中的元素出栈并放入stack2
                 // 以此达到逆序的目的
                 if (!this.stack2.length) {
+                    // 当stack1长度不为0时则继续放入stack2
                     while (this.stack1.length !== 0) {
                         this.stack2.push(this.stack1.pop())
                     }
