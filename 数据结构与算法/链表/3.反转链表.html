@@ -28,17 +28,23 @@
         }
         var reverseList = function (head) {
             if (!head || !head.next) return head
+            // 创建前驱指针
             let prev = null
             let cur = head
             while (cur) {
                 // 定义一个中间变量保存当前指针
                 let temp = cur.next
+                // 反转指针
                 cur.next = prev
                 prev = cur
                 cur = temp
             }
+            // 链表反转结束，此时cur为null，prev为反转后的链表头结点
             return prev
         };
+        // 创建测试用例
+        let head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))))
+        console.log(reverseList(head))
     </script>
 </body>
 

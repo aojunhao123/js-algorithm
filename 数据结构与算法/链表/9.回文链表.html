@@ -26,8 +26,49 @@
                 this.next = next
             }
         }
+        /**
+         * 回文链表：序列对称，头到尾与尾到头遍历得到的序列一样
+         * 具体思路：
+         * 1.找到链表中点
+         * 2.反转链表后半部分
+         * 3.对比两个部分
+         */
         var isPalindrome = function (head) {
-            
+            if (!head || !head.next) return true
+            // 链表中点
+            const middleNode = getMiddle(head)
+            // 反转链表后半部分
+            let half = reverseList(middleNode)
+            // diff
+            while (half) {
+                if (half.val !== head.val) return false
+                head = head.next
+                half = half.next
+            }
+            return true
+        };
+        var getMiddle = function (head) {
+            let slow = head, fast = head
+            while (fast && fast.next) {
+                slow = slow.next
+                fast = fast.next.next
+            }
+            return slow
+        }
+        var reverseList = function (head) {
+            // 创建前驱指针
+            let prev = null
+            let cur = head
+            while (cur) {
+                // 定义一个中间变量保存当前指针
+                let temp = cur.next
+                // 反转指针
+                cur.next = prev
+                prev = cur
+                cur = temp
+            }
+            // 链表反转结束，此时cur为null，prev为反转后的链表头结点
+            return prev
         };
     </script>
 </body>
