@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        class TreeNode {
+            constructor(val, left, right) {
+                this.val = val
+                this.left = left
+                this.right = right
+            }
+        }
+        /**
+         * @param {TreeNode} root
+         * @return {number[]}
+         */
+        // 前序遍历（根、左、右）
+        var preorderTraversal = function (root) {
+            const result = []
+            function traverse(root) {
+                // 递归终止条件
+                if (!root) return
+                // 先访问根节点
+                result.push(root.val)
+                // 遍历左子树
+                traverse(root.left)
+                // 遍历右子树
+                traverse(root.right)
+            }
+            // 利用闭包存储结果
+            traverse(root)
+            return result
+        };
+
+        // 中序遍历（左、根、右）
+        var inorderTraversal = function (root) {
+            const result = []
+            function traverse(root) {
+                // 递归终止条件
+                if (!root) return
+                traverse(root.left)
+                result.push(root.val)
+                traverse(root.right)
+            }
+            traverse(root)
+            return result
+        };
+
+        // 后序遍历（左、右、根）
+        var postorderTraversal = function (root) {
+            const result = []
+            function traverse(root) {
+                // 递归终止条件
+                if (!root) return
+                traverse(root.left)
+                traverse(root.right)
+                result.push(root.val)
+            }
+            traverse(root)
+            return result
+        }
+    </script>
+</body>
+
+</html>

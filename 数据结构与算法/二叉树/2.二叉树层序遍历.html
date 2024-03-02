@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val, left, right) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.left = (left===undefined ? null : left)
+         *     this.right = (right===undefined ? null : right)
+         * }
+         */
+        /**
+         * @param {TreeNode} root
+         * @return {number[][]}
+         */
+        var levelOrder = function (root) {
+            const result = []
+            // 创建队列用于存储节点
+            const queue = []
+            function traverse(root) {
+                // 访问根节点
+                queue.push(root)
+                if (!root) return result
+                // 若队列不为空，则说明树节点还没遍历完
+                while (queue.length) {
+                    // 用于标识同层级树节点
+                    let level = queue.length
+                    // 存放当前层级节点
+                    const cur = []
+                    for (let i = 0; i < level; i++) {
+                        // 获取队头元素
+                        const node = queue.shift()
+                        cur.push(node.val)
+                        if (node.left) {
+                            queue.push(node.left)
+                        }
+                        if (node.right) {
+                            queue.push(node.right)
+                        }
+                    }
+                    result.push(cur)
+                }
+            }
+            traverse(root)
+            return result
+        };
+    </script>
+</body>
+
+</html>
